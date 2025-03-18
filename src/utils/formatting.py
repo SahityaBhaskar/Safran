@@ -14,13 +14,14 @@ def format_analysis(analysis: DocumentAnalysis) -> str:
     output.append("=== Technical Writing Analysis ===\n")
     
     # Add original text using the property
-    output.append(f"Original Text:\n{analysis.original_text}\n")
+    output.append(f"Original Text:\n{analysis.full_text}\n")
     
     # Add violations if any exist
     if analysis.violations:
         output.append("\nFound Rule Violations:")
         for violation in analysis.violations:
             output.append(f"\n[{violation.rule_type}]")
+            output.append(f"Text: {violation.original_text}")
             output.append(f"Issue: {violation.explanation}")
             output.append(f"Suggestion: {violation.suggestion}")
     else:

@@ -10,13 +10,4 @@ class RuleViolation(BaseModel):
 class DocumentAnalysis(BaseModel):
     violations: List[RuleViolation] = Field(description="List of rule violations found")
     improved_text: str = Field(description="The corrected version of the text")
-
-    @property
-    def original_text(self) -> str:
-        """
-        Get the original text from the first violation or return improved text if no violations.
-        """
-        if self.violations:
-            return self.violations[0].original_text
-        return self.improved_text
-
+    full_text: str = Field(description="The complete original text that was analyzed")  # Add this field
